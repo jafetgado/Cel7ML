@@ -1,0 +1,194 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  cbh2.hmm
+# target sequence database:        egl_test2.fasta
+# sequence reporting threshold:    score >= 0
+# sequence inclusion threshold:    score >= 0
+# biased composition HMM filter:   off
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       cbh_train2  [M=523]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence Description
+    ------- ------ -----    ------- ------ -----   ---- --  -------- -----------
+    5.1e-81  260.3  30.4    4.7e-39  121.9   7.8    5.8  5  A1CG87.1  RecName: Full=Probable endo-beta-1,4-glucanase celB
+    1.5e-78  252.2  23.5    1.6e-37  116.8   5.7    4.6  4  Q5B7R2.1  RecName: Full=Endo-beta-1,4-glucanase celB; Short=E
+    5.6e-73  233.8  53.8      2e-29   90.1   4.8    6.3  6  Q12714.1  RecName: Full=Endoglucanase EG-1; AltName: Full=Cel
+
+
+Domain annotation for each sequence (and alignments):
+>> A1CG87.1  RecName: Full=Probable endo-beta-1,4-glucanase celB; Short=Endoglucanase celB; AltName: Full=Carboxymethylc
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  121.9   7.8   4.7e-39   4.7e-39      17     205 ..      30     237 ..      27     239 .. 0.87
+   2 !   30.6   1.0   2.1e-11   2.1e-11     224     247 ..     256     279 ..     255     279 .. 0.97
+   3 !   85.2   0.4     6e-28     6e-28     271     357 ..     314     405 ..     313     406 .. 0.98
+   4 !   18.8   0.4   8.1e-08   8.1e-08     367     402 ..     415     451 ..     414     451 .. 0.91
+   5 !   15.4   0.0   8.5e-07   8.5e-07     418     453 ..     467     503 ..     464     505 .. 0.91
+
+  Alignments for each domain:
+  == domain 1  score: 121.9 bits;  conditional E-value: 4.7e-39
+  cbh_train2  17 aqqvgt.lkaethPsltwqkctssgs..cttvegsvvidanw.rwvh.s..vsgs..tncyt.GnewdttlcpddetcaencaldGady..astygvtt 103
+                 aqq+g+ + +e+hP+lt  kcts+g   c ++++s+v+d+   +w+h +  + g   + c t     d +lcpd+etcaenc+++G +    s ygv+t
+    A1CG87.1  30 AQQIGS-T-KEVHPQLTTYKCTSQGG--CVKQNTSIVLDSGS-HWIH-A--KGGE--VSCTT-SSGLDPALCPDKETCAENCVVEGITD--YSQYGVQT 115
+                 55555333.599************************************66667888889*99*999*********************9666677***** PP
+
+  cbh_train2 104 sgsslklk..fvtess..qknvGsrlylme....ddetyqlfellnqeftfdvdvsnlpcGlnGalyfvsmdadGGlskyp..tnkaGakygtGycdsq 192
+                  g+++ l+  ++ + +  +k    r+yl++    d e+y +++llnqeftfdvdvs+lpcG+nGalyf++m a GG s  +   n aGa ygtGycd+q
+    A1CG87.1 116 RGDAMLLRe-YIKQNN-qTKAPSPRVYLLDe---DGENYSMLRLLNQEFTFDVDVSKLPCGMNGALYFSEMSASGGRS--A--LNPAGAAYGTGYCDAQ 205
+                 ********999***9884677778*****9666669****************************************87..444499************* PP
+
+  cbh_train2 193 cPr.dlkfinGean 205
+                 c   +  +inGean
+    A1CG87.1 206 CYT-N-AWINGEAN 217
+                 *7444.46777776 PP
+
+  == domain 2  score: 30.6 bits;  conditional E-value: 2.1e-11
+  cbh_train2 224 GsccaemdiweansistaltphPc 247
+                 G cc emdiwean  ++a+tphPc
+    A1CG87.1 256 GLCCQEMDIWEANARANAFTPHPC 279
+                 88********************** PP
+
+  == domain 3  score: 85.2 bits;  conditional E-value: 6e-28
+  cbh_train2 271 gtcdpdGcdfnsyrlGnksfy..GpGk..tvdtkkkltvvtqfitddgtssgtlseikrlyvqnGkviansesklsgvsg.nsitsdfceaq 357
+                 ++cd  Gc fn+y lG +++y  G  +  tvdt+k++tvvtqf+t+d++++g+l ei+rlyvq G+vi+n+ +k++g +  nsit+ +c++q
+    A1CG87.1 314 SVCDKAGCGFNPYALGARDYY--GTAM--TVDTTKPFTVVTQFLTADNSTTGALREIRRLYVQAGQVIQNAVVKVDGRTV-NSITEPYCASQ 400
+                 58***************************************************************************************987 PP
+
+  == domain 4  score: 18.8 bits;  conditional E-value: 8.1e-08
+  cbh_train2 367 fskkgGleglgkalaegmvlvlslwddy.aanmlwld 402
+                 f+  gGl+ +g+al +gmvl +s+w+d     m wld
+    A1CG87.1 415 FEGLGGLRRMGEALGRGMVLSMSIWNDA-GGFMHWLD 450
+                 7888***********************8888888887 PP
+
+  == domain 5  score: 15.4 bits;  conditional E-value: 8.5e-07
+  cbh_train2 418 rGtcetssgvPaeveaespnakvvfsnikfGpig.st 453
+                  G c+++ g+P+ +e++ p++ v+fs+i+ G++g +t
+    A1CG87.1 467 SGPCSSTEGDPSLIENKYPDTAVTFSKIRWGDLG-TT 502
+                 599*****************************98665 PP
+
+>> Q5B7R2.1  RecName: Full=Endo-beta-1,4-glucanase celB; Short=Endoglucanase celB; AltName: Full=Carboxymethylcellulase 
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  111.0   2.1   9.6e-36   9.6e-36      22     208 ..      37     240 ..      23     240 .. 0.83
+   2 !  116.8   5.7   1.6e-37   1.6e-37     223     338 ..     255     385 ..     255     389 .. 0.83
+   3 !   21.5   1.3   1.2e-08   1.2e-08     367     402 ..     415     451 ..     414     451 .. 0.94
+   4 !   11.8   0.0   1.1e-05   1.1e-05     417     454 ..     466     504 ..     464     505 .. 0.92
+
+  Alignments for each domain:
+  == domain 1  score: 111.0 bits;  conditional E-value: 9.6e-36
+  cbh_train2  22 tlkaethPsltwqkctssgs..cttvegsvvidanw.rwvhsv...sgs..tncyt.GnewdttlcpddetcaencaldGady..astygvttsgsslk 109
+                 t   e +P lt  +cts+    ct++++svv+da   + +h+    + s  + c t  n  + +lcpd++tca+nc++dG +    +++gv t gs l+
+    Q5B7R2.1  37 T--PEIRPRLTTYHCTSANG--CTEQNTSVVLDAAT-HPIHDA--sNPS--VSCTT-SNGLNPALCPDKQTCADNCVIDGITD--YAAHGVETHGSRLT 123
+                 4..5889****************************99999997773666888****************************995555669********** PP
+
+  cbh_train2 110 lk..fvtess..qknvGsrlylme....ddetyqlfellnqeftfdvdvsnlpcGlnGalyfvsmdadGGlskyp..tnkaGakygtGycdsqcPr.dl 197
+                 l   +          v  r+yl++    d+++y+ ++ll qeftf v+vs lpcG+nGaly+++m   GG s  +   n aGa ygtGycd+qc   + 
+    Q5B7R2.1 124 LTq-YRNVNG-aLSSVSPRVYLVDesdpDEQEYRALSLLAQEFTFTVNVSALPCGMNGALYLSEMSPSGGRS--A--LNPAGASYGTGYCDAQCYV-N- 214
+                 *84534333233789********733335789**************************************87..444499**************5222. PP
+
+  cbh_train2 198 kfinGeanveG 208
+                  +inGe n++G
+    Q5B7R2.1 215 PWINGEGNING 225
+                 47888888776 PP
+
+  == domain 2  score: 116.8 bits;  conditional E-value: 1.6e-37
+  cbh_train2 223 hGsccaemdiweansistaltphPcd.tvgqtlceg.dscg....gtyss.....dryggtcdpdGcdfnsyrlGnksfyGpGk....tvdtkkkltvv 306
+                 +G+cc+emdiweans st +tph c  ++++t   g  +c+       s+         g cd  Gc fn+y lGn+++yG+G+     vdtk+++tvv
+    Q5B7R2.1 255 YGACCNEMDIWEANSRSTGFTPHACLyEPEETEGRGvYECA-sedECDSA-----GENDGICDKWGCGFNPYALGNTEYYGRGQgf--EVDTKEPFTVV 345
+                 7************************6234444444423553322122255666666789*************************99999********** PP
+
+  cbh_train2 307 tqfitddgtssgtlseikrlyvqnGkvianse 338
+                 tqf+tddgts+g+l+ei+rly+qnG+vi+n+ 
+    Q5B7R2.1 346 TQFLTDDGTSTGALTEIRRLYIQNGQVIENAV 377
+                 *****************************986 PP
+
+  == domain 3  score: 21.5 bits;  conditional E-value: 1.2e-08
+  cbh_train2 367 fskkgGleglgkalaegmvlvlslwddy.aanmlwld 402
+                 f++ gG+eg+g+al +gmvl +s+w+d     m wld
+    Q5B7R2.1 415 FDSYGGMEGMGRALGRGMVLAMSIWNDA-GGYMQWLD 450
+                 8899***********************9888999998 PP
+
+  == domain 4  score: 11.8 bits;  conditional E-value: 1.1e-05
+  cbh_train2 417 arGtcetssgvPaeveaespnakvvfsnikfGpig.stf 454
+                   G c+ + g P+ +e ++p ++vvf ++k G+ig stf
+    Q5B7R2.1 466 DAGPCNATEGAPEFIEEHTPWTRVVFEDLKWGDIG-STF 503
+                 5699******************************98887 PP
+
+>> Q12714.1  RecName: Full=Endoglucanase EG-1; AltName: Full=Cellulase; AltName: Full=Endo-1,4-beta-glucanase; Flags: Pr
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   24.6   0.2   1.5e-09   1.5e-09      15      59 ..      28      75 ..      23      75 .. 0.95
+   2 !   90.1   4.8     2e-29     2e-29      74     194 ..      96     226 ..      92     227 .. 0.90
+   3 !   20.5   0.2   2.4e-08   2.4e-08     224     248 ..     256     280 ..     255     280 .. 0.95
+   4 !   51.6   0.4   9.6e-18   9.6e-18     272     336 ..     315     383 ..     314     385 .. 0.96
+   5 !   21.5   0.6   1.2e-08   1.2e-08     371     402 ..     419     451 ..     418     451 .. 0.96
+   6 !   47.9  16.9   1.2e-16   1.2e-16     418     523 .]     467     592 .]     464     592 .] 0.81
+
+  Alignments for each domain:
+  == domain 1  score: 24.6 bits;  conditional E-value: 1.5e-09
+  cbh_train2 15 akaqqvgtlkaethPsltwqkctssgs..cttvegsvvidanw.rwvh 59
+                ++aqq gt++ e+hP+lt  kct+sg   c  +++svv+d n+ rw+h
+    Q12714.1 28 VAAQQPGTSTPEVHPKLTTYKCTTSGG--CVAQDTSVVLDWNY-RWMH 72
+                789****************************************99998 PP
+
+  == domain 2  score: 90.1 bits;  conditional E-value: 2e-29
+  cbh_train2  74 dttlcpddetcaencaldGady..asty.gvttsgsslklk..fvtess..qknvGsrlylm.e...ddetyqlfellnqeftfdvdvsnlpcGlnGal 161
+                 +ttlcpd++tc +nc ++G dy  a+   gvt+sgs+l+l+  ++ +ss     v  rlyl+      d +y +++l +qe++fdvd+s lpcG nG+l
+    Q12714.1  96 NTTLCPDEATCGKNCYIEGVDY--AA-S-GVTASGSTLTLNq-YMPSSSggYSSVSPRLYLL-G---PDGEYVMLKLNGQELSFDVDLSALPCGENGSL 185
+                 89*******************99987.899***********7767776644789*********56665678**************************** PP
+
+  cbh_train2 162 yfvsmdadGGlsky..ptnkaGakygtGycdsqcP 194
+                 y+++md++GG ++y  +  +aGa+yg+Gycd+qcP
+    Q12714.1 186 YLSQMDENGGANQY--N--TAGANYGSGYCDAQCP 216
+                 ***********996666..59*************9 PP
+
+  == domain 3  score: 20.5 bits;  conditional E-value: 2.4e-08
+  cbh_train2 224 GsccaemdiweansistaltphPcd 248
+                 G cc+emdi e ns ++altph c+
+    Q12714.1 256 GFCCNEMDILEGNSRANALTPHSCT 280
+                 88**********************6 PP
+
+  == domain 4  score: 51.6 bits;  conditional E-value: 9.6e-18
+  cbh_train2 272 tcdpdGcdfnsyrlGnksfy..GpGk..tvdtkkkltvvtqfitddgtssgtlseikrlyvqnGkvian 336
+                  cd+ Gc fn+y  G  +++  GpG   tvdt+k +t++tqf td+g+ sg+l +i+r y qnG+ i+ 
+    Q12714.1 315 ACDSAGCGFNPYGSGYPNYF--GPGD--TVDTSKTFTIITQFNTDNGSPSGNLVSITRKYRQNGVDIPS 379
+                 7***************************************************************99875 PP
+
+  == domain 5  score: 21.5 bits;  conditional E-value: 1.2e-08
+  cbh_train2 371 gGleglgkalaegmvlvlslwddy.aanmlwld 402
+                 gGl+ +gkal++gmvlv+s+w+d+ +  m wld
+    Q12714.1 419 GGLATMGKALSSGMVLVFSIWNDN-SQYMNWLD 450
+                 9***********************999999*98 PP
+
+  == domain 6  score: 47.9 bits;  conditional E-value: 1.2e-16
+  cbh_train2 418 rGtcetssgvPaeveaespnakvvfsnikfGpig.stfsg....gs.ssgsss..........sassttttkaktttttsssst..gtgaq....kygq 494
+                  G c+++ g+P+++ a++p ++vv+sni+ G+ig st ++    g+ +++ +           + sstt ++++ ++ttsss++   t  +    ++gq
+    Q12714.1 467 AGPCSSTEGNPSNILANNPGTHVVYSNIRWGDIG-STTNSt---GG-NPPPPP--------ppA-SSTTFSTTRRSSTTSSSPS--CT-QT----HWGQ 544
+                 589********************************999865666668888888********743.34433333444444444433333.3588888*** PP
+
+  cbh_train2 495 cggigytgpttcaspytckklndyysqcl 523
+                 cggigytg  tc+s++tc++ ndyysqcl
+    Q12714.1 545 CGGIGYTGCKTCTSGTTCQYGNDYYSQCL 573
+                 ****************************7 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (523 nodes)
+Target sequences:                            3  (1776 residues searched)
+Passed MSV filter:                         3  (1); expected 0.1 (0.02)
+Passed bias filter:                        3  (1); expected 0.1 (0.02)
+Passed Vit filter:                         3  (1); expected 0.0 (0.001)
+Passed Fwd filter:                         3  (1); expected 0.0 (1e-05)
+Initial search space (Z):                  3  [actual number of targets]
+Domain search space  (domZ):               3  [number of targets reported over threshold]
+# CPU time: 0.11u 0.00s 00:00:00.11 Elapsed: 00:00:00.12
+# Mc/sec: 7.74
+//
+[ok]

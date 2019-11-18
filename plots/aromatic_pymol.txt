@@ -1,0 +1,4 @@
+select arocbh, resi 40 or resi 51 or resi 82 or resi 38 or resi 370 or resi 252 or resi 381
+
+select aroboth, resi 145 or resi 367 or resi 171 or resi 216 or resi 228 or resi 376
+

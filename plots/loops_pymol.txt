@@ -1,0 +1,3 @@
+select cel7a_loops, resi 98-102 or resi 399-411 or resi 369-373 or resi 383-392 or resi 51-56 or resi 194-201 or resi 244-253 or resi 339-342
+
+select cel7b_loops, resi 96-103 or resi 340-352 or resi 322-326 or resi 333-333 or resi 50-55 or resi 189-188 or resi 217-216 or resi 295-295

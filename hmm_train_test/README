@@ -1,0 +1,10 @@
+>> ncbi_kfold
+Contains the sequences (427) in NCBI split to 5 folds for training and testing (cbh_train*.fasta, egl_train*.fasta, cbh_test*.fasta, egl_test*.fasta), the respective HMMs built on the training data (cbh*.hmm, egl*.hmm), and the output of the HMMs applied to the test data (cbhhmm_cbh*.out, cbhhmm_egl*.out, eglhmm_cbh*.out, eglhmm_egl*.out)
+
+>> swiss_kfold
+Contains the same file names as ncbi_kfold, except that this is derived from the SwissProt dataset sequences (44).
+
+>> final_hmm
+Contains the final HMM trained on all sequences (i.e. all 5 folds): cbh_ncbi.hmm, egl_ncbi.hmm, cbh_swiss.hmm, egl_swiss.hmm. The subfolder, hmm_to_1748 contains the output files of the HMMs applied to the dataset of 1,748 sequences (cel7_nr99_cbhncbi.out, etc).
+
+

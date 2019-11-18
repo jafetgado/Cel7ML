@@ -1,0 +1,266 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  cbh1.hmm
+# target sequence database:        cbh_test1.fasta
+# sequence reporting threshold:    score >= 0
+# sequence inclusion threshold:    score >= 0
+# biased composition HMM filter:   off
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       cbh_train1  [M=517]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence Description
+    ------- ------ -----    ------- ------ -----   ---- --  -------- -----------
+   9.1e-247  808.3  38.9   1.1e-246  807.9  38.9    1.0  1  Q4WM08.1  RecName: Full=Probable 1,4-beta-D-glucan cellobiohy
+   2.2e-234  767.4  47.2   2.6e-234  767.1  47.2    1.0  1  Q9UVS8.1  RecName: Full=1,4-beta-D-glucan cellobiohydrolase B
+   1.7e-213  698.4  41.1   2.8e-213  697.8  41.1    1.2  1  Q06886.1  RecName: Full=Exoglucanase 1; AltName: Full=1,4-bet
+   6.3e-212  693.3  42.4   1.5e-211  692.1  42.4    1.5  1  P19355.2  RecName: Full=Exoglucanase 1; AltName: Full=1,4-bet
+   3.7e-194  634.7  33.0   1.2e-183  600.0  24.6    2.6  2  Q92400.1  RecName: Full=Exoglucanase; AltName: Full=1,4-beta-
+   5.7e-193  630.7  36.1   1.4e-192  629.4  36.1    1.5  1  P38676.1  RecName: Full=Exoglucanase 1; AltName: Full=1,4-bet
+
+
+Domain annotation for each sequence (and alignments):
+>> Q4WM08.1  RecName: Full=Probable 1,4-beta-D-glucan cellobiohydrolase B; AltName: Full=Beta-glucancellobiohydrolase B;
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  807.9  38.9  1.1e-246  1.1e-246      15     517 .]      28     592 .]      17     592 .] 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 807.9 bits;  conditional E-value: 1.1e-246
+  cbh_train1  15 araqqvgtltaethPsltwqkctssgs..cteksgsvvidanw.rwvh.s..vegs..tncyt.GntwdtslcpddetcakncaldGady..estyGvt 102
+                  +aqqvgt++ae+hPs+twq+ct++gs  ct+++g+vvidanw rwvh +  v ++  tncyt Gntwdt++cpdd+tca+ncal+Ga+y  estyGvt
+    Q4WM08.1  28 GQAQQVGTSQAEVHPSMTWQSCTAGGS--CTTNNGKVVIDANW-RWVH-K--VGDY--TNCYT-GNTWDTTICPDDATCASNCALEGANY--ESTYGVT 115
+                 58************************************************************************************************* PP
+
+  cbh_train1 103 tsgdslkl.k.fvtkss..sknvGsrlylm.e...ddetyqtfkllnkeftfdvdvsnlpcGlnGalyfvsmdadGGvskyptnkaGakyGtGycdsqc 193
+                 +sg+sl+l + fvt+s+  +kn+Gsrly+m +   dd+ty++fklln+eftfdvdvsnlpcGlnGalyfv+mdadGG+skyptnkaGakyGtGycdsqc
+    Q4WM08.1 116 ASGNSLRL-N-FVTTSQ--QKNIGSRLYMM-K---DDSTYEMFKLLNQEFTFDVDVSNLPCGLNGALYFVAMDADGGMSKYPTNKAGAKYGTGYCDSQC 206
+                 *************************************************************************************************** PP
+
+  cbh_train1 194 PrdlkfinGeanveGwepssndanaGvGnhGsccaemdiweansistaltphPc.......dtveqtmce.g.dscggtyss..dryaGtcdpdGcdfn 281
+                 PrdlkfinG+anveGw+pssndanaG+GnhGsccaemdiweansista+tphPc       dt +q mc+ g d+cggtyss  dry+GtcdpdGcdfn
+    Q4WM08.1 207 PRDLKFINGQANVEGWQPSSNDANAGTGNHGSCCAEMDIWEANSISTAFTPHPC-------DTPGQVMCT-G-DACGGTYSS--DRYGGTCDPDGCDFN 294
+                 *************************************************************************************************** PP
+
+  cbh_train1 282 syrlGnksfy..Gpgk..tvdtkkkltvvtqfitd..tssgslseikrlyvqnGkvianseskvsgvsg.nsitedfceaqkkafgdedvfakkgGleq 373
+                 s+r+Gnk+fy  Gpg+  tvdtk+k+tvvtqfitd  tssg+l+eikr+yvqnGkvi+nses+++gvsg nsit+++c+aqk++f+d++vf+k+gGle+
+    Q4WM08.1 295 SFRQGNKTFY--GPGM--TVDTKSKFTVVTQFITDdgTSSGTLKEIKRFYVQNGKVIPNSESTWTGVSG-NSITTEYCTAQKSLFQDQNVFEKHGGLEG 388
+                 **********************************9999************************************************************* PP
+
+  cbh_train1 374 lgkalaegmvlvlslwddh.aanmlwldstyPtdadaskpGvarGtcettsGvpaeveaespdakvvfsnikfGpig.stfs......gssggsss... 461
+                 +g+ala+gmvlv+slwddh +anmlwlds+yPt+a++++pGvarGtc+ +sGvpa+vea++pda+vv+snik+Gpig stf+      gs++g+++   
+    Q4WM08.1 389 MGAALAQGMVLVMSLWDDH-SANMLWLDSNYPTTASSTTPGVARGTCDISSGVPADVEANHPDAYVVYSNIKVGPIG-STFNsg----GSNPGGGT--- 478
+                 **********************************************************************************9999999********** PP
+
+  cbh_train1 462 ...........ssttttkakatsttss..stats.aqkygqcggigytgpttcaspytckklndyysqcl 517
+                            ++tttt+ ++t+tt+   + +t+ aq+ygqcggig+tgpttcaspytc+klndyysqcl
+    Q4WM08.1 479 -----------TTTTTTQPTTTTTTAGn-PGGTGvAQHYGQCGGIGWTGPTTCASPYTCQKLNDYYSQCL 536
+                 ***********9999999888888887898999889*********************************7 PP
+
+>> Q9UVS8.1  RecName: Full=1,4-beta-D-glucan cellobiohydrolase B; AltName: Full=Beta-glucancellobiohydrolase B; AltName:
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  767.1  47.2  2.6e-234  2.6e-234      16     517 .]      29     592 .]      29     592 .] 0.97
+
+  Alignments for each domain:
+  == domain 1  score: 767.1 bits;  conditional E-value: 2.6e-234
+  cbh_train1  16 raqqvgtltaethPsltwqkctssgs..cteksgsvvidanw.rwvh.s..vegs..tncyt.GntwdtslcpddetcakncaldGady..estyGvtt 103
+                 +aqqvgt+t+ethPsltwq+cts+gs  ct+++g+vvidanw rwvh s  ++++  tncyt Gn+wdts+c+dd tca+ncaldGa+y  e+tyGvtt
+    Q9UVS8.1  29 NAQQVGTYTTETHPSLTWQTCTSDGS--CTTNDGEVVIDANW-RWVH-S--TSSA--TNCYT-GNEWDTSICTDDVTCAANCALDGATY--EATYGVTT 116
+                 69**********************************************999999********************************************* PP
+
+  cbh_train1 104 sgdslkl.k.fvtkss..sknvGsrlylm.e...ddetyqtfkllnkeftfdvdvsnlpcGlnGalyfvsmdadGGvskyptnkaGakyGtGycdsqcP 194
+                 sg++l+l + fvt++s  skn+Gsrlylm +   dd++y+ fkll++eftfdvdvsnlpcGlnGalyfv+mdadGG+s+y++nkaGakyGtGycdsqcP
+    Q9UVS8.1 117 SGSELRL-N-FVTQGS--SKNIGSRLYLM-S---DDSNYELFKLLGQEFTFDVDVSNLPCGLNGALYFVAMDADGGTSEYSGNKAGAKYGTGYCDSQCP 207
+                 ******************************99999**************************************************************** PP
+
+  cbh_train1 195 rdlkfinGeanveGwepssndanaGvGnhGsccaemdiweansistaltphPc.......dtveqtmce.g.dscggtyss..dryaGtcdpdGcdfns 282
+                 rdlkfinGean++Gwepssn+ n+GvG+hGsccaemd+weansis+a+t+hPc       d+v+qtmc+ g dscggtys   dry+GtcdpdGcd+n+
+    Q9UVS8.1 208 RDLKFINGEANCDGWEPSSNNVNTGVGDHGSCCAEMDVWEANSISNAFTAHPC-------DSVSQTMCD-G-DSCGGTYSAsgDRYSGTCDPDGCDYNP 297
+                 *******************************************************************************97679*************** PP
+
+  cbh_train1 283 yrlGnksfy..Gpgk..tvdtkkkltvvtqfitd..tssgslseikrlyvqnGkvianseskvsgvsg.nsitedfceaqkkafgdedvfakkgGleql 374
+                 yrlGn++fy  Gpg   tvdt++++tvvtqfitd  tssg+l+eikrlyvqnG+vian++s++s+v+g +sit+ fce++k++fgde+vf+k+gGle++
+    Q9UVS8.1 298 YRLGNTDFY--GPGL--TVDTNSPFTVVTQFITDdgTSSGTLTEIKRLYVQNGEVIANGASTYSSVNG-SSITSAFCESEKTLFGDENVFDKHGGLEGM 391
+                 *********************************9999************************************************************** PP
+
+  cbh_train1 375 gkalaegmvlvlslwddh.aanmlwldstyPtdadaskpGvarGtcettsGvpaeveaespdakvvfsnikfGpig.stfs......gssggsss.... 461
+                 g+a+a+gmvlvlslwdd+ aa+mlwlds+yP++++as+pGvarGtc+t+sGvpa+veaesp+a+v++snikfGpig st+s      gss+gs+s    
+    Q9UVS8.1 392 GEAMAKGMVLVLSLWDDY-AADMLWLDSDYPVNSSASTPGVARGTCSTDSGVPATVEAESPNAYVTYSNIKFGPIG-STYS-s----GSSSGSGSss-- 481
+                 **********************************************************************************9****6666655558** PP
+
+  cbh_train1 462 ..........ssttttkakatsttss..stats.aqkygqcggigytgpttcaspytckklndyysqcl 517
+                           +++t+t+ k+tsttss  s++ts aq ygqcgg+g+tgpttc+s+ytc+  n+yysqcl
+    Q9UVS8.1 482 ----ssssttTKATSTTLKTTSTTSSg-SSSTSaAQAYGQCGGQGWTGPTTCVSGYTCTYENAYYSQCL 545
+                 *****9877644555556667777777966665599********************************7 PP
+
+>> Q06886.1  RecName: Full=Exoglucanase 1; AltName: Full=1,4-beta-cellobiohydrolase; AltName: Full=Exocellobiohydrolase 
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  697.8  41.1  2.8e-213  2.8e-213      15     517 .]      28     592 .]      27     592 .] 0.95
+
+  Alignments for each domain:
+  == domain 1  score: 697.8 bits;  conditional E-value: 2.8e-213
+  cbh_train1  15 araqqvgtltaethPsltwqkctss.gs..cteksgsvvidanw.rwvh.s..vegs..tncyt.GntwdtslcpddetcakncaldGady..est.yG 100
+                 ++aqqvgtltaethP+ltw+kct + g   c+++sgsvvidanw   vh s  ++gs  tncyt Gntwd++lcpdd tca+nca+dGa    +     
+    Q06886.1  28 VSAQQVGTLTAETHPALTWSKCT-A-GX--CSQVSGSVVIDANW-PXVH-S--TSGS--TNCYT-GNTWDATLCPDDVTCAANCAVDGARR--Q-H-LR 111
+                 78********************8.5557**********************9999**********************************974442.2336 PP
+
+  cbh_train1 101 vttsgdslkl.k.fvtkss..sknvGsrlylm.e...ddetyqtfkllnkeftfdvdvsnlpcGlnGalyfvsmdadGGvskyptnkaGakyGtGycds 191
+                 vttsg+sl++ + fvt++s  +kn+Gsrlyl+ e   +d+tyq+f+lln+eftfdvdvsnlpcGlnGalyfv mdadGG++kyptnkaGakyGtGycds
+    Q06886.1 112 VTTSGNSLRI-N-FVTTAS--QKNIGSRLYLL-E---NDTTYQKFNLLNQEFTFDVDVSNLPCGLNGALYFVDMDADGGMAKYPTNKAGAKYGTGYCDS 202
+                 9************************************************************************************************** PP
+
+  cbh_train1 192 qcPrdlkfinGeanveGwepssndanaGvGnhGsccaemdiweansistaltphPc.......dtveqtmce.g.dscggtyss..dryaGtcdpdGcd 279
+                 qcPrdlkfinG+anv+Gw+ps+nd n+G+GnhGsccaemdiweansis+a+tphPc       dt +qtmc+ g + cggtys   dry+GtcdpdGcd
+    Q06886.1 203 QCPRDLKFINGQANVDGWTPSKNDVNSGIGNHGSCCAEMDIWEANSISNAVTPHPC-------DTPSQTMCT-G-QRCGGTYST--DRYGGTCDPDGCD 290
+                 *************************************************************************************************** PP
+
+  cbh_train1 280 fnsyrlGnksfy..Gpgk..tvdtkkkltvvtqfitd..tssgslseikrlyvqnGkvianseskvsgvsg.nsitedfceaqkkafgdedvfakkgGl 371
+                 fn+yr+G ++fy  Gpg+  t+dtk+++tvvtqf+t+  ts+g+lseikr+yvq Gkvi n++s++ gvsg nsit+++c+aqk+afgd++ f+k+gG+
+    Q06886.1 291 FNPYRMGVTNFY--GPGE--TIDTKSPFTVVTQFLTNdgTSTGTLSEIKRFYVQGGKVIGNPQSTIVGVSG-NSITDSWCNAQKSAFGDTNEFSKHGGM 384
+                 ************************************9999*********************************************************** PP
+
+  cbh_train1 372 eqlgkalaegmvlvlslwddh.aanmlwldstyPtdadaskpGvarGtcet.tsGvpaeveaespdakvvfsnikfGpig.stfs......gssggsss 461
+                 +++g+ la+gmvlv+slwddh a++mlwldstyPt+a++++pG++rGtc+  +   p++ve+  p+a+v++snik Gp++ stf+      g++++ss+
+    Q06886.1 385 AGMGAGLADGMVLVMSLWDDH-ASDMLWLDSTYPTNATSTTPGAKRGTCDI-S-RRPNTVESTYPNAYVIYSNIKTGPLN-STFT-g----GTTSSSST 474
+                 *************************************************9665.58******************************9999966555555 PP
+
+  cbh_train1 462 ...............ssttttkakatsttss.stats.aqkygqcggigytgpttcaspytckklndyysqcl 517
+                                ss+ttt+ ++t+t+s  s++t+ a+ ++qcgg+g+tgpttc+spytc+k+nd+ysqcl
+    Q06886.1 475 tttt---skststssSSKTTTTVTTTTTSSG-SSGTG-ARDWAQCGGNGWTGPTTCVSPYTCTKQNDWYSQCL 542
+                 5789****9988874444444444444555599***************************************7 PP
+
+>> P19355.2  RecName: Full=Exoglucanase 1; AltName: Full=1,4-beta-cellobiohydrolase; AltName: Full=Exocellobiohydrolase;
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  692.1  42.4  1.5e-211  1.5e-211      15     517 .]      28     592 .]      23     592 .] 0.97
+
+  Alignments for each domain:
+  == domain 1  score: 692.1 bits;  conditional E-value: 1.5e-211
+  cbh_train1  15 araqqvgtltaethPsltwqkctssgs..cteksgsvvidanw.rwvh.s..vegs..tncyt.GntwdtslcpddetcakncaldGady..estyGvt 102
+                 araq+++tl+aethP+ltwqkc+s+g+  ct+++gsvvidanw rw+h +  +++s  tncy+ Gntw+++lcpd+etcaknc+ldGa y  +styGvt
+    P19355.2  28 ARAQSACTLQAETHPPLTWQKCSSGGT--CTQQTGSVVIDANW-RWTH-A--TNSS--TNCYD-GNTWSSTLCPDNETCAKNCCLDGAAY--ASTYGVT 115
+                 89***********************************************99999********************************************* PP
+
+  cbh_train1 103 tsgdslkl.k.fvtkss..sknvGsrlylm.e...ddetyqtfkllnkeftfdvdvsnlpcGlnGalyfvsmdadGGvskyptnkaGakyGtGycdsqc 193
+                 ts+dsl++   fvt+s+  +knvG+rlylm +   +d+tyq+f+ll++ef+fdvdvs+lpcGlnGalyfvsmdadGGvskyptn+aGakyGtGycdsqc
+    P19355.2 116 TSADSLSI-G-FVTQSA--QKNVGARLYLM-A---SDTTYQEFTLLGNEFSFDVDVSQLPCGLNGALYFVSMDADGGVSKYPTNTAGAKYGTGYCDSQC 206
+                 *******999*********************99999*************************************************************** PP
+
+  cbh_train1 194 PrdlkfinGeanveGwepssndanaGvGnhGsccaemdiweansistaltphPc.......dtveqtmce.g.dscggtyss..dryaGtcdpdGcdfn 281
+                 PrdlkfinG+anveGwepssn+an+G+G+hGscc+emdiweansis+altphPc       +tv+q++c+ g dscggtys   dry+GtcdpdGcd+n
+    P19355.2 207 PRDLKFINGQANVEGWEPSSNNANTGIGGHGSCCSEMDIWEANSISEALTPHPC-------TTVGQEICD-G-DSCGGTYSG--DRYGGTCDPDGCDWN 294
+                 *************************************************************************************************** PP
+
+  cbh_train1 282 syrlGnksfy..Gpgk..tvdtkkkltvvtqfitd........tssgslseikrlyvqnGkvianseskvsgvsg.nsitedfceaqkkafgdedv.fa 366
+                 +yrlGn+sfy  Gpg+  t+dt+kkltvvtqf t+        +       i+r+yvqnG++++++++++ ++sg ns+ +d+c+a++++fg  ++ f+
+    P19355.2 295 PYRLGNTSFY--GPGSsfTLDTTKKLTVVTQFETS--------G------AINRYYVQNGVTFQQPNAELGDYSG-NSLDDDYCAAEEAEFGG-SS-FS 374
+                 ************7776669**************98888888887......49***************************************97.6899* PP
+
+  cbh_train1 367 kkgGleqlgkalaegmvlvlslwddh.aanmlwldstyPtdadaskpGvarGtcettsGvpaeveaespdakvvfsnikfGpig.stfs......gssg 457
+                 +kgGl+q++ka++ gmvlv+slwdd+ +anmlwldstyPt++++s+pG+ rG+c+t+sGvpa++e++sp+akvv+snikfGpig st +      g+++
+    P19355.2 375 DKGGLTQFKKATSGGMVLVMSLWDDY-YANMLWLDSTYPTNETSSTPGAVRGSCSTSSGVPAQLESNSPNAKVVYSNIKFGPIG-STGNss----GGNP 467
+                 *************************************************************************************99997888888899 PP
+
+  cbh_train1 458 gsss..............ssttttkakatsttssstatsaq....kygqcggigytgpttcaspytckklndyysqcl 517
+                 ++++              ++tttt+++atst+ss+   + +    +ygqcggigy+gpt+cas+ tc++ln+yysqcl
+    P19355.2 468 PGGN-------------pPGTTTTRRPATSTGSSPGP-TQT----HYGQCGGIGYSGPTVCASGSTCQVLNPYYSQCL 527
+                 9999*************99999999999999998754.45699999*******************************7 PP
+
+>> Q92400.1  RecName: Full=Exoglucanase; AltName: Full=1,4-beta-cellobiohydrolase; AltName: Full=Beta-glucancellobiohydr
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  600.0  24.6  1.2e-183  1.2e-183      16     449 ..      29     500 ..      27     504 .. 0.98
+   2 !   38.7   1.2   1.6e-13   1.6e-13     485     517 .]     560     592 .]     541     592 .] 0.92
+
+  Alignments for each domain:
+  == domain 1  score: 600.0 bits;  conditional E-value: 1.2e-183
+  cbh_train1  16 raqqvgtltaethPsltwqkct.ssgs..cteksgsvvidanw.rwvh.s..vegs..tncyt.GntwdtslcpddetcakncaldGady..estyGvt 102
+                   qqvgt+ ae+hPsltwq+ct ss +  c++++g+v++danw rw+h +  +++   tncyt Gn+wdts+cpd+ tca+ncaldGady  ++tyGvt
+    Q92400.1  29 LGQQVGTNMAENHPSLTWQRCT-SS-G--CQNVNGKVTLDANW-RWTH-R--INDF--TNCYT-GNEWDTSICPDGVTCAENCALDGADY--AGTYGVT 114
+                 57*******************8884.8999*******************99999********************************************* PP
+
+  cbh_train1 103 tsgdslkl.k.fvtkss..sknvGsrlylm.e...ddetyqtfkllnkeftfdvdvsnlpcGlnGalyfvsmdadGGvskyp..tnkaGakyGtGycds 191
+                 +sg +l+l k fvt+s+  +kn+Gsrlylm +   dd++y++f+llnkeftfdvdvs+lpcGlnGalyf++m adGG+s  +  tn+aGakyGtGycds
+    Q92400.1 115 SSGTALTL-K-FVTESQ--QKNIGSRLYLM-A---DDSNYEIFNLLNKEFTFDVDVSKLPCGLNGALYFSEMAADGGMS--S--TNTAGAKYGTGYCDS 201
+                 *******************************99999******************************************8..7777************** PP
+
+  cbh_train1 192 qcPrdlkfinGeanveGwepssndanaGvGnhGsccaemdiweansistaltphPc.......dtveqtmce.g.dscggtyss.....dryaGtcdpd 276
+                 qcPrd+kfi+Gean eGwe s nd naG+Gn+G+cc emdiweansis+a+tphPc       ++ + ++ce g ++c+    +     drya +cdpd
+    Q92400.1 202 QCPRDIKFIDGEANSEGWEGSPNDVNAGTGNFGACCGEMDIWEANSISSAYTPHPC-------REPGLQRCE-G-NTCS---VN-----DRYATECDPD 283
+                 ******************************************************************************8...79*************** PP
+
+  cbh_train1 277 GcdfnsyrlGnksfy..Gpgk..tvdtkkkltvvtqfitd..tssgslseikrlyvqnGkvianseskvsgv.sgnsitedfceaqkkafgdedvfakk 368
+                 Gcdfns+r+G+ksfy  Gpg+  tvdt++++tvvtqfitd  +++g+l+ei+r+yvqnG+vi+ns+ +++g+ sgnsi+ +fc++ k+afgde +f+++
+    Q92400.1 284 GCDFNSFRMGDKSFY--GPGM--TVDTNQPITVVTQFITDngSDNGNLQEIRRIYVQNGQVIQNSNVNIPGIdSGNSISAEFCDQAKEAFGDERSFQDR 378
+                 ****************************************9899***************************9458************************ PP
+
+  cbh_train1 369 gGleqlgkalaegmvlvlslwddh.aanmlwldstyPtdadaskpGvarGtcettsGvpaeveaespdakvvfsnikfGpig 449
+                 gGl+++g+al++gmvlvls+wddh a+nmlwlds+yP da++s+pG+ rGtc+ +sG+p++vea+++  +vv+snikfG+i+
+    Q92400.1 379 GGLSGMGSALDRGMVLVLSIWDDH-AVNMLWLDSDYPLDASPSQPGISRGTCSRDSGKPEDVEANAGGVQVVYSNIKFGDIN 459
+                 *********************************************************************************8 PP
+
+  == domain 2  score: 38.7 bits;  conditional E-value: 1.6e-13
+  cbh_train1 485 kygqcggigytgpttcaspytckklndyysqcl 517
+                  +gqcgg+g+tgpt+c+sp tc+++nd+ysqc+
+    Q92400.1 560 MWGQCGGQGWTGPTACQSPSTCHVINDFYSQCF 592
+                 59******************************5 PP
+
+>> P38676.1  RecName: Full=Exoglucanase 1; AltName: Full=1,4-beta-cellobiohydrolase 1; AltName: Full=Exocellobiohydrolas
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  629.4  36.1  1.4e-192  1.4e-192      16     517 .]      29     592 .]      27     592 .] 0.95
+
+  Alignments for each domain:
+  == domain 1  score: 629.4 bits;  conditional E-value: 1.4e-192
+  cbh_train1  16 raqqvgtltaethPsltwqkctssgs...cteksgsvvidanw.rwvh.s..vegs..tncyt.GntwdtslcpddetcakncaldGady..estyGvt 102
+                   qq+gtlta++hPsltwqkct  g+   c + ++ +v+danw rw+h +  ++gs  t cyt Gn+w+++lcpd+++ca+ncaldGady  ++tyG+t
+    P38676.1  29 GGQQAGTLTAKRHPSLTWQKCT-RGG---CPTLNTTMVLDANW-RWTH-A--TSGS--TKCYT-GNKWQATLCPDGKSCAANCALDGADY--TGTYGIT 114
+                 68*******************8.599***********************99999********************************************* PP
+
+  cbh_train1 103 tsgdslkl.k.fvtk......sssknvGsrlylm.e...ddetyqtfkllnkeftfdvdvsnlpcGlnGalyfvsmdadGGvskyptnkaGakyGtGyc 189
+                  sg sl+l + fvt+      +    vG+r ylm +   dd++yq+++lln+e+ fdvd+sn+pcGlnGaly+++mdadGG+ kyptnkaGaky tGyc
+    P38676.1 115 GSGWSLTL-Q-FVTD------N----VGARAYLM-A---DDTQYQMLELLNQELWFDVDMSNIPCGLNGALYLSAMDADGGMRKYPTNKAGAKYATGYC 197
+                 *************977777777....************************************************************************* PP
+
+  cbh_train1 190 dsqcPrdlkfinGeanveGwepssndana.GvGnhGsccaemdiweansistaltphPc.......dtveqtmce.g.dscggtyss..dryaGtcdpd 276
+                 d+qcPrdlk+inG anveGw+ps+nda   G+G+hGscc+emdiwean++sta+tphPc       +t+eq+mce g dscggtys+  dry+  cd+d
+    P38676.1 198 DAQCPRDLKYINGIANVEGWTPSTNDA-N-GIGDHGSCCSEMDIWEANKVSTAFTPHPC-------TTIEQHMCE-G-DSCGGTYSD--DRYGVLCDAD 283
+                 ***********************9986.5669******************************************************************* PP
+
+  cbh_train1 277 GcdfnsyrlGnksfy..Gpgk..tvdtkkkltvvtqfitd...tssgslseikrlyvqnGkvianseskvsgvsg.nsitedfceaqkkafgdedvfak 367
+                 Gcdfnsyr+Gn++fy  G+gk  tvdt++k+tvvtqfi+d   + +g+l+eik +yvqnGkvi+ns+s+v+gvsg nsit++fc++qk+afgd d+f+k
+    P38676.1 284 GCDFNSYRMGNTTFY--GEGK--TVDTSSKFTVVTQFIKD---S-AGDLAEIKAFYVQNGKVIENSQSNVDGVSG-NSITQSFCKSQKTAFGDIDDFNK 373
+                 **************************************977777.589*************************************************** PP
+
+  cbh_train1 368 kgGleqlgkalaegmvlvlslwddh.aanmlwldstyPtd...adaskpGvarGtcettsGvpaeveaespdakvvfsnikfGpig.stfs......gs 455
+                 kgGl+q+gkala++mvlv+s+wddh aanmlwldstyP+    +    pG+ rG+ +ttsGvpaev+a++p++kv fsnikfG +g s fs      gs
+    P38676.1 374 KGGLKQMGKALAQAMVLVMSIWDDH-AANMLWLDSTYPVP---K---VPGAYRGSGPTTSGVPAEVDANAPNSKVAFSNIKFGHLGiSPFS-g----GS 460
+                 **************************************955554...69************************************966788*9****9* PP
+
+  cbh_train1 456 sggsss.............ssttttka..katsttss.stats.aqkygqcggigytgpttcaspytckklndyysqcl 517
+                 sg+ +s             s t++t +  ++tst+s+ +++t+ a++++qcggig++gpttc +pytc k  d ysqc+
+    P38676.1 461 SGTPPS-------npsssaSPTSSTAK-pSSTSTASN-PSGTG-AAHWAQCGGIGFSGPTTCPEPYTCAKDHDIYSQCV 529
+                 ***99*********98753222222223245555666*****************************************6 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                              1  (517 nodes)
+Target sequences:                            6  (3552 residues searched)
+Passed MSV filter:                         6  (1); expected 0.1 (0.02)
+Passed bias filter:                        6  (1); expected 0.1 (0.02)
+Passed Vit filter:                         6  (1); expected 0.0 (0.001)
+Passed Fwd filter:                         6  (1); expected 0.0 (1e-05)
+Initial search space (Z):                  6  [actual number of targets]
+Domain search space  (domZ):               6  [number of targets reported over threshold]
+# CPU time: 0.23u 0.01s 00:00:00.24 Elapsed: 00:00:00.24
+# Mc/sec: 7.65
+//
+[ok]

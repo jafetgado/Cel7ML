@@ -1,0 +1,18 @@
+>> rules_all.xlsx
+All 1,799 position-specific classification rules.
+
+>> rules_amino.xlsx
+Rules relating specific amino acid to subtype (913 rules)
+
+>> rules_type.xlsx
+Rules relating amino acid type to subtype (886 rules)
+
+>> rules_mcc.xlsx
+All rules having an MCC score of 0.73 or greater (90 rules).
+
+>> rules_amino_mcc.xlsx
+Rules relating specific amino acid to subtype, and having an MCC score of 0.73 or greater.
+
+>> rules_type_mcc.xlsx
+Rules relating amino acid type to subtype, and having an MCC score of 0.73 or greater.
+

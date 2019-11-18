@@ -1,0 +1,1 @@
+select top20, (resi 432 or resi 307 or resi 413 or resi 434 or resi 433 or resi 371 or resi 87 or resi 410 or resi 177 or resi 174 or resi 296 or resi 379 or resi 229 or resi 413 or resi 431 or resi 48 or resi 375 or resi 76 or resi 40 or resi 135) and protein
