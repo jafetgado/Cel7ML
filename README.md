@@ -10,7 +10,7 @@ The strategies utilized here may be adapted to uncover sequence-function relatio
 ## Requirements
 - Python (>= 3)
 
-##### Python modules (version used in this work)
+#### Python modules (version used in this work)
 - Pandas (0.24.2)
 - Numpy (1.16.2)
 - Scipy (1.1.0)
@@ -20,20 +20,20 @@ The strategies utilized here may be adapted to uncover sequence-function relatio
 - Matplotlib (3.0.2)
 - Seaborn (0.9.0)
 
-##### Other requirements (install on your machine, and specify executable path in required scripts)
+#### Other requirements (install on your machine, and specify executable path in required scripts)
 - HMMER [Download __[here](http://hmmer.org/download.html)__]
 - MAFFT [Download __[here](https://mafft.cbrc.jp/alignment/software/)__]
 - NCBI command-line BLAST  [Download __[here](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)__]
 
 
 ## Python scripts
-##### Main scripts
+#### Main scripts
 - `subtype_hmm.py` : Using hidden Markov models (HMM) to discriminate GH7 functional subtypes (CBH vs EG)
 - ``subtype_ml.py``: Supervised ML to discriminate GH7 functional subtypes
 - ``subtype_rules.py``: Deriving position-specific classification rules for discriminating GH7 functional subtypes
 - ``cbm_ml.py``: Supervised ML to predict the presence of carbohydrate binding modules (CBM) in GH7s.
 
-##### Other Python scripts
+#### Other Python scripts
 - `bioinformatics.py`: adhoc functions for bioinformatic analysis
 - `analysis_and_plots`: script for analyzing results and plotting figures
 
