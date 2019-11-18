@@ -1,4 +1,4 @@
-# Cel7_ML
+# Cel7ML
 ## Using machine learning to uncover sequence-function relationships in a cellulase family
 
 
