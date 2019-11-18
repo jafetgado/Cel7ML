@@ -8,8 +8,7 @@ The strategies utilized here may be adapted to uncover sequence-function relatio
 
 
 ## Requirements
------------------
-- Python ()
+- Python (>= 3)
 
 ##### Python modules (version used in this work)
 - Pandas (0.24.2)
@@ -28,7 +27,6 @@ The strategies utilized here may be adapted to uncover sequence-function relatio
 
 
 ## Python scripts
------------------------
 ##### Main scripts
 - `subtype_hmm.py` : Using hidden Markov models (HMM) to discriminate GH7 functional subtypes (CBH vs EG)
 - ``subtype_ml.py``: Supervised ML to discriminate GH7 functional subtypes
@@ -40,12 +38,10 @@ The strategies utilized here may be adapted to uncover sequence-function relatio
 - `analysis_and_plots`: script for analyzing results and plotting figures
 
 ## Datasets
------------------
 - Sequence datasets are in `./fasta/`
 - Datasets containing results presented in the paper (Gado *et al*, 2019) are in `./results_final/`
 
 ## Citation
------------------------
 If you find this work useful, please cite this paper:
 
 Gado, J.E., Harrison, B.E., Sandgren, M., Ståhlberg, J., Beckham, G.T., and Payne, C.M. **Machine learning reveals sequence-function relationships in family 7 glycoside hydrolases.** Submitted to *FEBS* (2019).
