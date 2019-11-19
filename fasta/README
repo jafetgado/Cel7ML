@@ -1,11 +1,11 @@
+>>  cbh_egl_annotation
+Contains sequences retrieved from the databases which have been annotated as CBH or EG.
+
 >> initial_blast
 Contains sequences retrieved from the databases by blast search.
 
 >> structure_based_alignment
 Contains fasta files used in stucture-based MSA of 1,748 sequences.
-
->>  cbh_egl_annotation
-Contains sequences retrieved from the databases which have been annotated as CBH or EG.
 
 >> trecel7a_positions_only
 Contains sequence alignment fasta files with all positions not corresponding to the positions in the full-length TreCel7A removed.
