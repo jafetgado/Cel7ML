@@ -20,7 +20,7 @@ The strategies utilized here may be adapted to uncover sequence-function relatio
 - Matplotlib (3.0.2)
 - Seaborn (0.9.0)
 
-#### Other requirements (install on your machine, and specify executable path in required scripts)
+#### Other requirements (install on your machine, and specify executable path in scripts)
 - HMMER [Download __[here](http://hmmer.org/download.html)__]
 - MAFFT [Download __[here](https://mafft.cbrc.jp/alignment/software/)__]
 - NCBI command-line BLAST  [Download __[here](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)__]
@@ -35,7 +35,7 @@ The strategies utilized here may be adapted to uncover sequence-function relatio
 
 #### Other Python scripts
 - `bioinformatics.py`: adhoc functions for bioinformatic analysis
-- `analysis_and_plots`: script for analyzing results and plotting figures
+- `analysis_and_plots.py`: script for analyzing results and plotting figures
 
 ## Datasets
 - Sequence datasets are in `./fasta/`
