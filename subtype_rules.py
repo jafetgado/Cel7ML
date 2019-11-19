@@ -80,8 +80,8 @@ class Cel7MSA():
     '''A class for efficient analyses of GH7 MSA, and for 
         deriving position-specific classification rules. 
         cbh_msa is the fasta file of the subalignment containing 
-        CBH sequences and only TreCel7A positions. egl_msa if the
-        fasta file for EG sequences.'''
+        CBH sequences and only TreCel7A positions, and egl_msa is
+        the fasta file for EG sequences.'''
         
         
     def __init__(self, cbh_msa, egl_msa):
