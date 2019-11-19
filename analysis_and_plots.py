@@ -633,7 +633,7 @@ with open('plots/cbm_pymol.txt', 'w') as txt:
 
 
 
-# Table of [osition-specific rules for predicting CBM
+# Table of position-specific rules for predicting CBM
 #================================================#
 ex = pd.read_excel('results_final/ml_cbm_pred/position_rules.xlsx', index_col=0)
 table = pd.DataFrame()
