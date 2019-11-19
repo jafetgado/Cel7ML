@@ -2,7 +2,7 @@
 ## Using machine learning to uncover sequence-function relationships in a cellulase family
 
 
-Family 7 cellulases (Cel7s), or glycoside hydrolases (GH7s),  are principal enzymes for cellulose degradation, both in nature and in industry. In this work, machine learning (ML) is applied to relate the amino acid sequence of GH7s to function by identifying what parts of the sequence are majorly utilized by ML algorithms to predict functional subtypes.
+Family 7 cellulases (Cel7s), or glycoside hydrolases (GH7s),  are principal enzymes for cellulose degradation, both in nature and in industry. In this work, machine learning (ML) is applied to relate the amino acid sequence of GH7s to function, and to  identify what parts of the sequence are majorly utilized by ML algorithms to predict functional subtypes.
 
 The strategies utilized here may be adapted to uncover sequence-function relationships in other protein families.
 
