@@ -1,5 +1,5 @@
 >>  cbh_egl_annotation
-Contains sequences retrieved from the databases which have been annotated as CBH or EG.
+Contains sequences retrieved from the databases that have been annotated as CBH or EG.
 
 >> initial_blast
 Contains sequences retrieved from the databases by blast search.
