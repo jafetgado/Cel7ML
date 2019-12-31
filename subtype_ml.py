@@ -167,7 +167,7 @@ def apply_ML(X_grand, y_grand, clf_type, monte_count=100):
     
     # Monte Carlo loop
     for i in range(monte_count):
-        RUS = RandomUnderSampler(random_state=None)
+        RUS = RandomUnderSampler(random_state=None) # Random undersampling of majority class
         X_select, y_select = RUS.fit_resample(X_grand, y_grand)
         X_select, y_select = pd.DataFrame(X_select), pd.Series(y_select)
             
