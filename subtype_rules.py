@@ -23,8 +23,8 @@ warnings.filterwarnings("ignore")
 
 
 
-# Prepares sequences and data
-#=================================#
+# Prepare sequences and other data
+#====================================#
 if __name__ == '__main__':
     # Get MSA with only TreCel7A positions for analysis
     heads, sequences = bioinf.split_fasta('fasta/structure_based_alignment\
