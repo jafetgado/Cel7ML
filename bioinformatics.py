@@ -1,6 +1,6 @@
-#=======================================================#
-# Adhoc functions for bioinformatic analyses
-#=======================================================#
+"""
+Adhoc functions for bioinformatic analyses
+"""
 
 
 import pandas as pd

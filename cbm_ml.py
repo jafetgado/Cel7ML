@@ -1,6 +1,6 @@
-#==============================================================================#
-# Predict presence of CBM from catalytic domain residues with machine learning
-#==============================================================================#
+"""
+Predict presence of CBM from catalytic domain residues with machine learning
+"""
 
 
 
@@ -33,24 +33,25 @@ import bioinformatics as bioinf
 
 
 
+
+
 # Determine presence of CBM from full length sequences
 #=====================================================#
 
-# Make database of 1,748 sequences
-# NCBI blast should be installed on your computer
+# Make database of 1,748 sequences 
+# (NCBI blast executable should be installed on your computer)
 directory = 'cbm_database'
 if not os.path.exists(directory):
     os.mkdir(directory)
-makeblast_exe = '/usr/local/ncbi/blast/bin/makeblastdb' # Path of NCBI blast executable (Change this)
+makeblast_exe = '/usr/local/ncbi/blast/bin/makeblastdb' # Path of NCBI makeblastdb executable (CHANGE THIS!)
 fasta_file = 'fasta/initial_blast/cel7_nr99_full_length.fasta'
-subprocess.call('{0} -in {1} -dbtype prot -out cel7_cbm'.format(makeblast_exe, fasta_file),
-                shell=True)
+subprocess.call(f'{makeblast_exe} -in {fasta_file} -dbtype prot -out cel7_cbm', shell=True)
 subprocess.call('mv cel7_cbm.* cbm_database/', shell=True)
 
 
 # Blast TreCel7A CBM against 1748 sequences
-# NCBI blast should be installed on your computer
-blastp_exe = '/usr/local/ncbi/blast/bin/blastp'   # Path of blast executable (Change this)
+# (NCBI blast executable should be installed on your computer)
+blastp_exe = '/usr/local/ncbi/blast/bin/blastp'   # Path of blastp executable (CHANGE THIS)
 trecel7a_cbm = 'cbm_database/trecel7a_cbm1.fasta'
 output = 'results_final/cbm_blast_output.txt'
 blast_cline = NcbiblastpCommandline(cmd=blastp_exe, query=trecel7a_cbm, 
@@ -60,12 +61,12 @@ stdout, stderr = blast_cline()  # evalue of 1e-3 or less corresponds to bit scor
 
 
 # CBM data for all sequences
-ex = pd.read_excel('results_final/cbm_blast_output.xlsx')
+ex = pd.read_csv('results_final/cbm_blast_output.csv')  # csv derived from txt file output
 accession_cbm = list(ex['subject'])
 accession_all = bioinf.get_accession('fasta/initial_blast/cel7_nr99_full_length.fasta')
 has_cbm = [1 if x in accession_cbm else 0 for x in accession_all]
 df = pd.DataFrame([accession_all, has_cbm], index=['accession', 'has_cbm']).transpose()
-df.to_excel('results_final/has_cbm.xlsx')
+df.to_csv('results_final/has_cbm.csv')
 
 
 # CBM distribution
@@ -76,6 +77,8 @@ cbh_cbm = df_cbh.has_cbm.value_counts()[1]
 cbh_nocbm = df_cbh.has_cbm.value_counts()[0]
 egl_cbm = df_egl.has_cbm.value_counts()[1]
 egl_nocbm = df_egl.has_cbm.value_counts()[0]
+
+
 
 
 
@@ -114,6 +117,9 @@ for i in range(len(sequence_df.columns)):
     
     
 
+
+
+
 # Randomly split data to validation set and test set
 #====================================================#
 y = pd.Series(has_cbm)   # class labels
@@ -140,6 +146,8 @@ y_test_sep = y.iloc[test_indices]
 
 
 
+
+
 # Apply random forests to validation set using all features
 #=============================================================#
 
@@ -156,7 +164,7 @@ def evalPerf(y_test, y_pred):
     mcc = ((tp*tn) - (fp*fn))/np.sqrt((tp+fp)*(tn+fn)*(tp+fp)*(tn+fp))
     sens = tp/(tp + fn) * 100 if tp + fp != 0 else 0
     spec = tn/(tn + fp) * 100 if tn + fn != 0 else 0
-    table = np.array([[tp, fp], [fn, tn]]) # Contingency table for statistical test
+    table = np.array([[tp, fp], [fn, tn]]) # CBH and EG have same contingency table
     p_value = stats.chi2_contingency(table)[1]
     return [sens, spec, accuracy, mcc, p_value]
 
@@ -200,12 +208,14 @@ featimp_std = pd.DataFrame(featimp_store).std(axis=0)
 store_featimp = pd.DataFrame([X_val.columns, featimp_mean, featimp_std], 
                              index=['features', 'mean', 'std']).transpose()
 
-# Write results to excel spreadsheet
-store.to_excel('results_final/ml_cbm_pred/perf_all.xlsx')
-store_featimp.to_excel('results_final/ml_cbm_pred/featimp_all.xlsx')
+# Write results to spreadsheet
+store.to_csv('results_final/ml_cbm_pred/perf_all.csv')
+store_featimp.to_csv('results_final/ml_cbm_pred/featimp_all.csv')
      
    
         
+
+
         
 # Use only top 50 features
 #===================================#
@@ -256,15 +266,17 @@ featimp_std_top50 = pd.DataFrame(featimp_store).std(axis=0)
 store_featimp_top50 = pd.DataFrame([X_val_top50.columns, featimp_mean_top50, featimp_std_top50], 
                              index=['features', 'mean', 'std']).transpose()
 
-# Write results to excel spreadsheet
-store_top50.to_excel('results_final/ml_cbm_pred/perf_top50.xlsx')
-store_featimp_top50.to_excel('results_final/ml_cbm_pred/featimp_top50.xlsx')               
+# Write results to spreadsheet
+store_top50.to_csv('results_final/ml_cbm_pred/perf_top50.csv')
+store_featimp_top50.to_csv('results_final/ml_cbm_pred/featimp_top50.csv')
 
 
 
 
-# Repeat top50 random forest without terminal residues 
-#=======================================================#
+
+
+# Repeat random forest without on top 50 features without terminal residues 
+#=============================================================================#
 
 # Top 50 features
 top50_index = list(store_featimp.sort_values(by='mean', ascending=False).iloc[:50,:].index)
@@ -318,8 +330,10 @@ featimp_std_top50 = pd.DataFrame(featimp_store).std(axis=0)
 store_featimp_top50 = pd.DataFrame([X_val_top50.columns, featimp_mean_top50, featimp_std_top50], 
                              index=['features', 'mean', 'std']).transpose()
 
-# Write results to excel spreadsheet
-store_top50.to_excel('results_final/ml_cbm_pred/perf_top50_noterm.xlsx')
+# Write results to  spreadsheet
+store_top50.to_csv('results_final/ml_cbm_pred/perf_top50_noterm.csv')
+
+
 
 
 
@@ -374,8 +388,8 @@ store_featimp_top20 = pd.DataFrame([X_val_top20.columns, featimp_mean_top20, fea
                              index=['features', 'mean', 'std']).transpose()
 
 # Write results to excel spreadsheet
-store_top20.to_excel('results_final/ml_cbm_pred/perf_top20.xlsx')
-store_featimp_top20.to_excel('results_final/ml_cbm_pred/featimp_top20.xlsx')       
+store_top20.to_csv('results_final/ml_cbm_pred/perf_top20.csv')
+store_featimp_top20.to_csv('results_final/ml_cbm_pred/featimp_top20.csv')
         
 
 
@@ -392,12 +406,14 @@ tn, tp, fn, fp = cm[0][0], cm[1][1], cm[1][0], cm[0][1]
 sens, spec, accuracy, mcc, pvalue = evalPerf(y_test_sep, y_pred)
 store = pd.DataFrame([tp, fp, tn, fn, sens, spec, accuracy, mcc], 
                      index=['tp', 'fp', 'tn', 'fn', 'sens', 'spec', 'acc', 'mcc'])
-store.to_excel('results_final/ml_cbm_pred/perf_test_set.xlsx')
+store.to_csv('results_final/ml_cbm_pred/perf_test_set.csv')
 
         
 
 
-# Position specific rules (Supporting Information)
+
+
+# Position specific rules from top 50 features (Supporting Information)
 #===============================================================================#
 store = [] # empty list for storing results
 for col in X_val_top50.columns:
@@ -411,7 +427,7 @@ for col in X_val_top50.columns:
     cm1 = confusion_matrix(y_val, y_pred1)
     perf1 = evalPerf(y_val, y_pred1)
     
-    # Add rule
+    # Add rule (i.e. the rule with the highest MCC)
     if perf[3] > perf1[3]:
         perf = ['{0}=>CBM'.format(col)] + perf
         store.append(perf)
@@ -421,8 +437,25 @@ for col in X_val_top50.columns:
 
 store = pd.DataFrame(store, columns=['rule', 'sensitivity', 
                                      'specificity', 'accuracy', 'mcc', 'pvalue'])
-store.to_excel('results_final/ml_cbm_pred/position_rules.xlsx')
+store.to_csv('results_final/ml_cbm_pred/position_rules.csv')
 
     
     
     
+    
+# Correlation between tenth disulfide bond and presence of a CBM
+#===================================================================#
+c4 = X_val_top50['C4']
+c72 = X_val_top50['C72']
+c4andc72 = c4 * c72
+cm = confusion_matrix(has_cbm, c4andc72)
+perf = evalPerf(has_cbm, c4andc72)
+#print(cm)
+#print(perf)
+
+
+
+
+
+
+

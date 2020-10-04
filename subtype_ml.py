@@ -1,12 +1,12 @@
-#===============================================================#
-# Prediction of GH7 subtypes with machine learning (ML)
-#===============================================================#
+"""
+Prediction of GH7 subtypes (CBH/EG) with machine learning (ML)
+"""
 
 
 
 
 # Imports
-#===============================#
+#===========#
 
 import pandas as pd
 import numpy as np
@@ -34,21 +34,21 @@ import bioinformatics as bioinf
 
 
 
+
+
 # Get lengths of loops from MSA
 #================================================#
 def get_gh7looplength(msafasta, trecel7a_pos=0):
-    ''' Return a DataFrame of the number of residues
-    in the 8 loops of GH7 sequences in an MSA fasta file.
-    TreCel7A is used as reference for determining the loop 
-    positions in the MSA. The position of TreCel7A in the 
-    fasta file is trecel7a_pos (0 if first). Loop lengths 
-    are in the order [A1, A2, A3, A4, B1, B2, B3, B4]. '''
+    ''' Return a DataFrame of the number of residues in the 8 loops of GH7 sequences in 
+    an MSA fasta file. TreCel7A is used as reference for determining the loop positions
+    in the MSA. The position of TreCel7A in the fasta file is trecel7a_pos (0 if first).
+    Loop lengths are in the order [A1, A2, A3, A4, B1, B2, B3, B4]. '''
     
     # Loop residues in TreCel7A
     loopres = ['QSAQK', 'TSSGVPAQVESQS', 'DYYAN', 'TNETSSTPGA',
                'YDGNTW', 'PSSNNANT', 'GGTYSDNRYG', 'GGSS']  # Residues in the loops of TreCel7A
     loopmore = ['NVGARLY', 'PNAKVTFSNIK', 'MLWLDST', 'VRGSCSTSSGVPA',
-                'SSTLCPD', 'GIGGHGSCCS', 'GTCDPDGCDWNP', 'FSDKGGL']  # Residues after the loops
+                'SSTLCPD', 'GIGGHGSCCS', 'GTCDPDGCDWNP', 'FSDKGGL'] # Residues after the loops
     
     # Get aligned sequences
     [heads, sequences] = bioinf.split_fasta(msafasta)   # Retrieve sequences from fasta file 
@@ -87,10 +87,12 @@ msafile = 'fasta/structure_based_alignment/cel7_nr99_structaln.fasta'
 looplength = get_gh7looplength(msafile, trecel7a_pos=0)
 
 
-# Write results to excel spreadhseet
+# Write results to spreadhseet
 looplength.index = range(1, len(looplength)+1)
 looplength['accession'] = bioinf.get_accession(msafile)
-looplength.to_excel('results_final/looplength.xlsx')
+looplength.to_csv('results_final/looplength.csv')
+
+
 
 
 
@@ -99,8 +101,8 @@ looplength.to_excel('results_final/looplength.xlsx')
 #================================================================#
 
 # Retreive data
-looplength = pd.read_excel('results_final/looplength.xlsx', index_col=0)
-subtype = pd.read_excel('results_final/cel7_subtypes.xlsx', index_col=0)
+looplength = pd.read_csv('results_final/looplength.csv', index_col=0)
+subtype = pd.read_csv('results_final/cel7_subtypes.csv', index_col=0)
 looplength.index = range(len(looplength))
 subtype.index = range(len(subtype))
 assert looplength.accession.equals(subtype.accession)  # Ensure sequence positions are the same
@@ -142,6 +144,7 @@ y_grand = pd.Series(list(subtype['ncbi_pred_class']), index=range(len(subtype)))
     
 
 
+
 # Apply machine learning to predict subtypes from loop lengths
 #==============================================================================#
 def get_classifier(clf_type, depth=1):
@@ -167,7 +170,7 @@ def apply_ML(X_grand, y_grand, clf_type, monte_count=100):
     
     # Monte Carlo loop
     for i in range(monte_count):
-        RUS = RandomUnderSampler(random_state=None) # Random undersampling of majority class
+        RUS = RandomUnderSampler(random_state=None)
         X_select, y_select = RUS.fit_resample(X_grand, y_grand)
         X_select, y_select = pd.DataFrame(X_select), pd.Series(y_select)
             
@@ -256,13 +259,15 @@ def apply_ML(X_grand, y_grand, clf_type, monte_count=100):
 clf_types = ['dec', 'svm', 'knn', 'log']
 for clf_type in clf_types:
     results = apply_ML(X_grand, y_grand, clf_type, monte_count=100)
-    results.to_excel('results_final/ml_subtype_pred/{0}.xlsx'.format(clf_type))
+    results.to_csv('results_final/ml_subtype_pred/{clf_type}.csv'
 
 
                 
 
-# Get decision tree rules
-#=============================#
+                
+
+# Get single-node decision tree rules
+#=====================================#
 X_grand = looplength.iloc[:,1:] # Non-standardized lengths
 for i in range(len(X_grand.columns)):
     RUS = RandomUnderSampler(random_state=None)
@@ -279,21 +284,17 @@ for i in range(len(X_grand.columns)):
                          filled=True, rounded=True,
                          special_characters=True)
     graph = pydot.graph_from_dot_data(dot_data.getvalue())
-    graph.write_pdf('plots/dec_tree_rules/{0}.pdf'.format(X.columns[0]))
+    graph.write_pdf(f'plots/dec_tree_rules/{X.columns[0]}.pdf'
     
 
 
 
-# Probability of significant truncation in  B2, B3, and B4 loops
-# given that A4 loop is truncated
-#==============================================================================#
+# Probability of significant truncation in  A4, B2, and B3 loops if the B4 loop is short
+#========================================================================================#
 
 X_grand = looplength.iloc[:,1:] # Non-standardized lengths
-#a4_less6 = X_grand[X_grand['A4']<=5]
 b4_less = X_grand[X_grand['B4']<=3]
 all_less = b4_less[b4_less['B3']<=3]
 all_less = all_less[all_less['A4']<=5]
 all_less = all_less[all_less['B2']<=4]
 proba = len(all_less)/len(b4_less) * 100
-
-
