@@ -1,4 +1,5 @@
 .DS_store
+__pycache__
 cbm_database/.DS_store
 fasta/.DS_store
 fasta/cbh_egl_annotation/.DS_store
