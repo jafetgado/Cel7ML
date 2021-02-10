@@ -19,7 +19,7 @@ import seaborn as sns
 import warnings
 warnings.filterwarnings("ignore")
 
-import bioinformatics as bioinf
+import bioinf
  
 
 
@@ -178,69 +178,85 @@ store2.to_csv('plots/ml_subtype_table.csv')
 # Plot MCC values for subtype prediction with ML
 #===================================================#
 
+# Variables
 mlkeys = ['dec', 'log', 'knn', 'svm']
-features = ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'B4', 'all8']
+labels = ['Decision tree', 'Logistic regression', 'KNN', 'SVM']
+features = ['A1', 'A2', 'A3', 'A4', 'B1', 'B2', 'B3', 'B4', 'All-8']
+colors = ['goldenrod', 'magenta', 'cadetblue', 'red']
 
-store2 = []
-columns = []
-for key in mlkeys:
-    excel = pd.read_csv(f'results_final/ml_subtype_pred/{key}.csv', index_col=0)
-    mcc_mean, mcc_std = [], []
-    columns.extend([key + '_mcc_mean', key + '_mcc_std'])
-    for i in range(len(features)):
-        mcc_mean.append(excel.mcc_mean[i])
-        mcc_std.append(excel.mcc_std[i])
-    store2.extend([mcc_mean, mcc_std])
-store2 = pd.DataFrame(store2).transpose()
-store2.index = features
-store2.columns = columns
-
+# Plot specifications
 fnt = 'Arial'
 ticks_font = {'fontname':fnt, 'size':'14'}
-legend_font = {'family':fnt, 'size':'11'}
+legend_font = {'family':fnt, 'size':'9'}
 label_font = {'family':fnt, 'size':'18'}
 plt.rcParams["figure.figsize"] = [6,3]
 plt.rcParams['grid.alpha'] = 0.5
 
-xlabel = features[:-1] + ['All-8']
-color = ['dimgray', 'black', 'cadetblue', 'brown']
-legend_label = ['Decision tree', 'Logistic regression', 'KNN', 'SVM']
 
-X = np.arange(len(features))
-lw = 1.0   # Width of bar edge
-w = 0.175   #  Width of bar
-cap = 2
+for i,key in zip(range(len(mlkeys)), mlkeys):
+    # Get data
+    data = pd.read_csv(f'results_final/mcc_data/{key}.csv', index_col=0)
+    
+    # Boxplot specifications
+    positions = np.arange(9) * (len(mlkeys) + 3) + i
+    color = colors[i]
+    meanprops = {'marker':'o',
+                'markerfacecolor':color,
+                'markeredgecolor':'black',
+                'markersize':2.0,
+                'linewidth':0.5}
+    medianprops = {'linestyle':'-',
+                   'linewidth':0.5,
+                   'color':'black'}
+    boxprops = {'facecolor':color,
+                'color':'black',
+                'linewidth':0.5}
+    flierprops = {'marker':'o',
+                  'markerfacecolor':'black',
+                  'markersize':1,
+                  'markeredgecolor':'black'}
+    whiskerprops = {'linewidth':0.5}
+    capprops = {'linewidth':0.5}
+    
+    # Plot the boxplot
+    _ = plt.boxplot(
+                    data, 
+                    positions=positions, 
+                    widths=0.7,#(1, 1, 1),
+                    whis=(0,100),               # Percentiles for whiskers
+                    showmeans=False,             # Show means in addition to median
+                    patch_artist=True,          # Fill with color
+                    meanprops=meanprops,        # Customize mean points
+                    medianprops=medianprops,    # Customize median points
+                    boxprops=boxprops,
+                    showfliers=False,            # Show/hide points beyond whiskers            
+                    flierprops=flierprops,
+                    whiskerprops=whiskerprops,
+                    capprops=capprops
+                    )
 
-out1 = plt.bar(X-1.5*w, store2.iloc[:,0], yerr=store2.iloc[:,1], 
-               capsize=cap, color=color[0], width=w, linewidth=lw, 
-               edgecolor='black')
-out2 = plt.bar(X-0.5*w, store2.iloc[:,2], yerr=store2.iloc[:,3], 
-               capsize=cap, color=color[1], width=w, linewidth=lw, 
-               edgecolor='black')
-out3 = plt.bar(X+0.5*w, store2.iloc[:,4], yerr=store2.iloc[:,5], 
-               capsize=cap, color=color[2], width=w, linewidth=lw,
-               edgecolor='black')
-out4 = plt.bar(X+1.5*w, store2.iloc[:,6], yerr=store2.iloc[:,7], 
-               capsize=cap, color=color[3], width=w, linewidth=lw,
-               edgecolor='black')
 
-plt.xlim(0-2*w,8+2*w)
-plt.ylim([-1.0,1.20])
-plt.yticks(**ticks_font)
-plt.xticks(X, xlabel, rotation=0, **ticks_font)
-plt.ylabel('MCC', **label_font)
-pltout = [x[0] for x in [out1, out2, out3, out4]]
-plt.legend(pltout, legend_label, frameon=1, numpoints=1, shadow=1, loc='best', 
+# Plot dummy scatter points for legend
+for i in range(len(mlkeys)):
+    plt.bar([100], [100], color=colors[i], label=labels[i], edgecolor='black',
+            linewidth=0.5)
+    
+# Specifications
+plt.legend(frameon=1, numpoints=1, shadow=0, loc='best', 
            prop=legend_font)
-plt.axhline(color='black')
+plt.xticks(np.arange(9) * 7 + 1.5, features, **ticks_font)
+plt.yticks(**ticks_font)
+plt.ylabel('MCC', **label_font)
+plt.ylim((-1.1, 1.1))
+plt.xlim((-1,61))
 plt.tight_layout()
 
-plt.savefig('plots/mcc_plot.pdf')
+# Save plot
+plt.savefig('plots/mcc_boxwhiskerplot.pdf')    
+plt.show(); plt.close()
 
-
-
-
-
+    
+ 
 
 # Plots for outlier detection
 #===============================#
@@ -275,7 +291,7 @@ for i in range(8):
     plt.ylabel('Length', **label_font)
     plt.title(loop, **title_font)
     plt.tight_layout()
-    plt.savefig(f'plots/outlier_detection/{loop}.pdf')
+    #plt.savefig(f'plots/outlier_detection/{loop}.pdf')
     plt.show()
     plt.close()
 
@@ -292,51 +308,80 @@ for i in range(len(looplength.columns)):
 
 
 
-# Plot average loop lengths
-#================================#
+# Plot loop lengths (box/whisker plot)
+#=======================================#
 
+# Get data
 cbh_looplength = looplength.iloc[subtype[subtype==1].index]
 eg_looplength = looplength.iloc[subtype[subtype==0].index]
-cbh_stat = cbh_looplength.describe()
-eg_stat = eg_looplength.describe()
-all_stat = looplength.describe()
+data = [cbh_looplength, eg_looplength]
+labels = ['CBH', 'EG']
+colors = ['lightblue', 'pink']
 
+# Plot specifications
 fnt='Arial'
 ticks_font = {'fontname':fnt, 'size':'16'}
 label_font = {'family':fnt, 'size':'18'}
-legend_font = {'family':'Arial', 'size':'14'}
+legend_font = {'family':'Arial', 'size':'12'}
 title_font = {'family':fnt, 'size':'20'}
 plt.rcParams['figure.figsize'] = [6,3]
 plt.rcParams['grid.alpha'] = 0.3
 plt.rcParams['axes.axisbelow'] = True
 legend_label  = ['CBH', 'EG']
 
-lw = 1.0   # Width of bar edge
-w = 0.35   #  Width of bar
-cap = 3
-legend_label = ['CBH', 'EG']
+
+for i in range(2):
+
+    positions = np.arange(8) * (len(data) + 1) + i
+    color = colors[i]
+    medianprops = {'linestyle':'-',
+                   'linewidth':1.0,
+                   'color':'black'}
+    boxprops = {'facecolor':color,
+                'color':'black',
+                'linewidth':1.0}
+    flierprops = {'marker':'o',
+                  'markerfacecolor':'black',
+                  'markersize':1,
+                  'markeredgecolor':'black'}
+    whiskerprops = {'linewidth':1.0}
+    capprops = {'linewidth':1.0}
+    
+    # Plot the boxplot
+    _ = plt.boxplot(
+                    data[i], 
+                    positions=positions, 
+                    widths=0.75,#(1, 1, 1),
+                    whis=(0,100),               # Percentiles for whiskers
+                    showmeans=False,             # Show means in addition to median
+                    patch_artist=True,          # Fill with color
+                    meanprops=meanprops,        # Customize mean points
+                    medianprops=medianprops,    # Customize median points
+                    boxprops=boxprops,
+                    showfliers=False,            # Show/hide points beyond whiskers            
+                    flierprops=flierprops,
+                    whiskerprops=whiskerprops,
+                    capprops=capprops
+                    )
 
 
-X = np.arange(8)
-color = ['lightblue', 'pink']
-out1 = plt.bar(X-0.5*w, cbh_stat.loc['mean',:], color=color[0], width=w, 
-               linewidth=lw, edgecolor='black', yerr=cbh_stat.loc['std',:],
-               ecolor='black', capsize=cap)
-out2 = plt.bar(X+0.5*w, eg_stat.loc['mean',:], color=color[1], width=w, 
-               linewidth=lw, edgecolor='black', yerr=eg_stat.loc['std',:],
-               ecolor='black', capsize=cap)
-plt.ylim((0,18))
-plt.xlim((-0.4,7.4))
 
-plt.xticks(X, cbh_stat.columns, **ticks_font)
-plt.yticks(np.arange(0,17,2),**ticks_font)
+# Plot dummy scatter points for legend
+for i in range(2):
+    plt.bar([100], [100], color=colors[i], label=labels[i], edgecolor='black', 
+            linewidth=1.0)
+
+# Plot specifications
+plt.legend(frameon=1, numpoints=1, shadow=0, loc='upper center', 
+           prop=legend_font)
+plt.xticks(np.arange(8) * 3 + 0.5, cbh_looplength.columns, **ticks_font)
+plt.yticks(np.arange(-4, 24, step=4), **ticks_font)
 plt.ylabel('Number of residues', **label_font)
-pltout = [x[0] for x in [out1, out2]]
-plt.legend(pltout, legend_label, numpoints=1, loc='best', prop=legend_font)
+plt.ylim((-0.5, 22))
+plt.xlim((-1,23))
 plt.tight_layout()
-plt.savefig('plots/looplengths.pdf')
-
-
+plt.savefig('plots/looplength_boxwhiskerplot.pdf')    
+plt.show(); plt.close()
 
 
 
@@ -637,6 +682,7 @@ plt.xlabel('Feature No.', **label_font)
 plt.ylabel('Gini importance', **label_font)
 plt.tight_layout()
 plt.savefig('plots/cbm_all_featimp.pdf')
+plt.show();plt.close()
 
 
 
@@ -646,9 +692,67 @@ plt.savefig('plots/cbm_all_featimp.pdf')
 # Plot of feature importances of top 20 features
 #================================================#
 
-ex = pd.read_csv('results_final/ml_cbm_pred/featimp_top20.csv', index_col=0)
-ex = ex.sort_values('mean', ascending=False)
+# Get data and sort in descending order of feature importance
+ex = pd.read_csv('results_final/ml_cbm_pred/featimp_top20_fulldata.csv', index_col=0)
+ex = ex.loc[:,ex.mean(axis=0).sort_values(ascending=False).index]
 
+# Plot specifications
+fnt='Arial'
+ticks_font = {'fontname':fnt, 'size':'16'}
+label_font = {'family':fnt, 'size':'20'}
+legend_font = {'family':'Arial', 'size':'12'}
+title_font = {'family':fnt, 'size':'20'}
+plt.rcParams['figure.figsize'] = [6,3]
+plt.rcParams['axes.axisbelow'] = True
+
+positions = np.arange(ex.shape[1])
+color = 'firebrick'
+medianprops = {'linestyle':'-',
+               'linewidth':1.0,
+               'color':'black'}
+boxprops = {'facecolor':color,
+            'color':'black',
+            'linewidth':1.0}
+flierprops = {'marker':'o',
+              'markerfacecolor':'black',
+              'markersize':1,
+              'markeredgecolor':'black'}
+whiskerprops = {'linewidth':1.0}
+capprops = {'linewidth':1.0}
+
+
+# Box and whisker plot
+_ = plt.boxplot(
+                ex, 
+                positions=positions, 
+                widths=0.75,#(1, 1, 1),
+                whis=(0,100),               # Percentiles for whiskers
+                showmeans=False,             # Show means in addition to median
+                patch_artist=True,          # Fill with color
+                meanprops=meanprops,        # Customize mean points
+                medianprops=medianprops,    # Customize median points
+                boxprops=boxprops,
+                showfliers=False,            # Show/hide points beyond whiskers            
+                flierprops=flierprops,
+                whiskerprops=whiskerprops,
+                capprops=capprops
+                )
+
+
+
+# Plot specifications
+plt.xticks(np.arange(ex.shape[1]), ex.columns, rotation=90, **ticks_font)
+plt.yticks(np.arange(0.0, 0.15, step=0.02), **ticks_font)
+plt.ylabel('Gini importance', **label_font)
+plt.ylim((-0.005, 0.145))
+plt.xlim((-1,20))
+plt.tight_layout()
+plt.savefig('plots/cbm_top20_featimp_boxwhisker.pdf')
+plt.show(); plt.close()
+
+
+
+'''
 fnt='Arial'
 ticks_font = {'fontname':fnt, 'size':'16'}
 label_font = {'family':fnt, 'size':'20'}
@@ -661,8 +765,8 @@ plt.yticks(**ticks_font)
 plt.xlabel('Features', **label_font)
 plt.ylabel('Gini importance', **label_font)
 plt.tight_layout()
-plt.savefig('plots/cbm_top20_featimp.pdf')
-
+plt.savefig('plots/cbm_top20_featimp_boxwhisker.pdf')
+'''
 
 
 

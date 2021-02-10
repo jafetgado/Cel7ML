@@ -29,7 +29,7 @@ from sklearn.externals.six import StringIO
 import warnings
 warnings.filterwarnings("ignore")
 
-import bioinformatics as bioinf
+import bioinf
 
 
 
@@ -238,6 +238,7 @@ def apply_ML(X_grand, y_grand, clf_type, monte_count=100):
     spec_final = pd.DataFrame(spec_final)
     acc_final = pd.DataFrame(acc_final)
     mcc_final = pd.DataFrame(mcc_final)
+    mcc_final = mcc_final.fillna(0)
     
     # Combine results to a single dataframe
     results = pd.DataFrame()
@@ -251,15 +252,17 @@ def apply_ML(X_grand, y_grand, clf_type, monte_count=100):
     results['acc_std'] = acc_final.std()
     results['mcc_mean'] = mcc_final.mean()
     results['mcc_std'] = mcc_final.std()
+    mcc_final.columns = columns
     
-    return results
+    return results, mcc_final
         
 
 # Implement machine learning using 4 different classifiers
 clf_types = ['dec', 'svm', 'knn', 'log']
 for clf_type in clf_types:
-    results = apply_ML(X_grand, y_grand, clf_type, monte_count=100)
-    results.to_csv('results_final/ml_subtype_pred/{clf_type}.csv'
+    results, mcc_data = apply_ML(X_grand, y_grand, clf_type, monte_count=100)
+    results.to_csv(f'results_final/ml_subtype_pred/{clf_type}.csv')
+    mcc_data.to_csv(f'results_final/mcc_data/{clf_type}.csv')
 
 
                 
@@ -284,7 +287,7 @@ for i in range(len(X_grand.columns)):
                          filled=True, rounded=True,
                          special_characters=True)
     graph = pydot.graph_from_dot_data(dot_data.getvalue())
-    graph.write_pdf(f'plots/dec_tree_rules/{X.columns[0]}.pdf'
+    graph.write_pdf(f'plots/dec_tree_rules/{X.columns[0]}.pdf')
     
 
 

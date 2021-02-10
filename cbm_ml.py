@@ -28,7 +28,7 @@ from sklearn.metrics import confusion_matrix
 import warnings
 warnings.filterwarnings("ignore")
 
-import bioinformatics as bioinf
+import bioinf
 
 
 
@@ -70,7 +70,7 @@ df.to_csv('results_final/has_cbm.csv')
 
 
 # CBM distribution
-df['subtype'] = pd.read_excel('results_final/cel7_subtypes.xlsx')['ncbi_pred_class']
+df['subtype'] = pd.read_csv('results_final/cel7_subtypes.csv')['ncbi_pred_class']
 df_cbh = df[df['subtype']==1]
 df_egl = df[df['subtype']==0]
 cbh_cbm = df_cbh.has_cbm.value_counts()[1]
@@ -382,12 +382,14 @@ store_top20 = [np.mean(sens_store), np.std(sens_store), np.mean(spec_store), np.
          np.mean(acc_store), np.std(acc_store), np.mean(mcc_store), np.std(mcc_store)]
 store_top20 = pd.DataFrame(store_top20, index=['sens_mean', 'sens_std', 'spec_mean', 'spec_std',
                                    'acc_mean', 'acc_std', 'mcc_mean', 'mcc_std'])
+featimp_data = pd.DataFrame(featimp_store, columns=X_val_top20.columns)
 featimp_mean_top20 = pd.DataFrame(featimp_store).mean(axis=0)
 featimp_std_top20 = pd.DataFrame(featimp_store).std(axis=0)
 store_featimp_top20 = pd.DataFrame([X_val_top20.columns, featimp_mean_top20, featimp_std_top20], 
                              index=['features', 'mean', 'std']).transpose()
 
 # Write results to excel spreadsheet
+featimp_data.to_csv('results_final/ml_cbm_pred/featimp_top20_fulldata.csv')
 store_top20.to_csv('results_final/ml_cbm_pred/perf_top20.csv')
 store_featimp_top20.to_csv('results_final/ml_cbm_pred/featimp_top20.csv')
         
