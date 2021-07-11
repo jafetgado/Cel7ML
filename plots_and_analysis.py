@@ -187,9 +187,9 @@ colors = ['goldenrod', 'magenta', 'cadetblue', 'red']
 # Plot specifications
 fnt = 'Arial'
 ticks_font = {'fontname':fnt, 'size':'14'}
-legend_font = {'family':fnt, 'size':'9'}
+legend_font = {'family':fnt, 'size':'11'}
 label_font = {'family':fnt, 'size':'18'}
-plt.rcParams["figure.figsize"] = [6,3]
+plt.rcParams["figure.figsize"] = [11,3]
 plt.rcParams['grid.alpha'] = 0.5
 
 
@@ -204,25 +204,25 @@ for i,key in zip(range(len(mlkeys)), mlkeys):
                 'markerfacecolor':color,
                 'markeredgecolor':'black',
                 'markersize':2.0,
-                'linewidth':0.5}
+                'linewidth':1.0}
     medianprops = {'linestyle':'-',
-                   'linewidth':0.5,
+                   'linewidth':1.0,
                    'color':'black'}
     boxprops = {'facecolor':color,
                 'color':'black',
-                'linewidth':0.5}
+                'linewidth':1.0}
     flierprops = {'marker':'o',
                   'markerfacecolor':'black',
                   'markersize':1,
                   'markeredgecolor':'black'}
-    whiskerprops = {'linewidth':0.5}
-    capprops = {'linewidth':0.5}
+    whiskerprops = {'linewidth':1.0}
+    capprops = {'linewidth':1.0}
     
     # Plot the boxplot
     _ = plt.boxplot(
                     data, 
                     positions=positions, 
-                    widths=0.7,#(1, 1, 1),
+                    widths=0.85,#(1, 1, 1),
                     whis=(0,100),               # Percentiles for whiskers
                     showmeans=False,             # Show means in addition to median
                     patch_artist=True,          # Fill with color
@@ -675,7 +675,8 @@ ticks_font = {'fontname':fnt, 'size':'16'}
 label_font = {'family':fnt, 'size':'20'}
 plt.rcParams['figure.figsize'] = [6,3]
 
-plt.bar(range(len(ex)), list(ex.iloc[:,1]), color='maroon', linewidth=1, edgecolor='maroon')
+color = 'red'
+plt.bar(range(len(ex)), list(ex.iloc[:,1]), color=color, linewidth=1, edgecolor=color)
 plt.xticks(**ticks_font)
 plt.yticks(**ticks_font)
 plt.xlabel('Feature No.', **label_font)
@@ -706,7 +707,7 @@ plt.rcParams['figure.figsize'] = [6,3]
 plt.rcParams['axes.axisbelow'] = True
 
 positions = np.arange(ex.shape[1])
-color = 'firebrick'
+color = 'red'
 medianprops = {'linestyle':'-',
                'linewidth':1.0,
                'color':'black'}
@@ -729,7 +730,6 @@ _ = plt.boxplot(
                 whis=(0,100),               # Percentiles for whiskers
                 showmeans=False,             # Show means in addition to median
                 patch_artist=True,          # Fill with color
-                meanprops=meanprops,        # Customize mean points
                 medianprops=medianprops,    # Customize median points
                 boxprops=boxprops,
                 showfliers=False,            # Show/hide points beyond whiskers            
@@ -860,15 +860,72 @@ for i in range(len(ranges)):
 # Amino acid distribution at positions forming disulfide bonds in GH7 sequences
 #====================================================================================#
 df = bioinf.fasta_to_df('fasta/trecel7a_positions_only/cel7_cat.fasta')
-df.columns = range(1, df.shape[1]+1d)
-cysbonds = [4, 72, 19, 25, 50, 71, 61, 67, 138, 397, 172, 210, 176, 209, 230, 256, 238, 243, 
-            261, 331]
-cysfreq = [list(df[pos]).count('C') / 1748 * 100 for pos in cysbonds]
+df.columns = range(1, df.shape[1]+1)
+subtype = pd.read_csv('results_final/cel7_subtypes.csv', index_col=0)['ncbi_pred_class']
+dfcbh = df.iloc[(subtype==1).values,:]
+dfeg = df.iloc[(subtype==0).values,:]
+cysres = [4, 72, 19, 25, 50, 71, 61, 67, 138, 397, 172, 210, 176, 209, 230, 256, 238, 243, 
+          261, 331]
+'''
+cysres = [4, 19, 50, 61, 138, 172, 176, 230, 238, 261] + \
+         [72, 25, 71, 67, 397, 210, 209, 256, 243, 331]
+'''
+cysfreq = [list(df[pos]).count('C') / len(df) * 100 for pos in cysres]
+cysfreq_cbh = [list(dfcbh[pos]).count('C') / len(dfcbh) * 100 for pos in cysres]
+cysfreq_eg = [list(dfeg[pos]).count('C') / len(dfeg) * 100 for pos in cysres]
+allfreq = {'GH7': cysfreq,
+           'CBH': cysfreq_cbh,
+           'EG': cysfreq_eg}
+colors = {'GH7': 'grey',
+          'CBH': 'dodgerblue',
+          'EG': 'crimson'}
 
-plt.rcParams['figure.figsize'] = [6,3]
-xindex = [1, 2, 5, 6, 9, 10, 13, 14, 17, 18, 21, 22, 25, 26, 29, 30, 33, 34, 37, 38]
-plt.bar(xindex, cysfreq, color='dodgerblue', linewidth=1.25, edgecolor='black' )
-plt.xticks(xindex, [f'C-{i}' for i in cysbonds], rotation=90)
-plt.ylabel('Frequency (%)')
+fnt='Arial'
+ticks_font = {'fontname':fnt, 'size':'10'}
+legend_font = {'family':fnt, 'size':'10'}
+label_font = {'family':fnt, 'size':'12'}
+plt.rcParams['figure.figsize'] = [6.5,3]
+
+numbars = 6
+space_bars = 2
+space_group = 4
+
+ax = plt.subplot(111)
+for i,key in enumerate(['GH7', 'CBH', 'EG']):
+    xindex1 = np.arange(int(len(cysres)/2)) * (numbars + space_bars + space_group) + (i * numbars/2)
+    xindex2 = np.arange(int(len(cysres)/2)) * (numbars + space_bars + space_group) + (i * numbars/2 + 1)
+    xindex = list(xindex1) + list(xindex2)
+    xindex = sorted(xindex)
+    plt.bar(xindex, allfreq[key], color=colors[key], edgecolor='black', label=key, 
+            linewidth=0.33)
+
+
+xindex = np.arange(int(len(cysres)/2)) * (numbars + space_bars + space_group) + (numbars-5)/2
+xticks = [f'C{cysres[i]}-C{cysres[i+1]}' for i in np.arange(0,len(cysres), step=2)]
+plt.xticks(xindex, xticks, rotation=30, **ticks_font)
+plt.yticks(**ticks_font)
+ax.tick_params(axis='both', which='major', pad=0, bottom=False, top=False)
+plt.xlim((-15,125))
+plt.ylabel('Frequency (%)', **label_font)
+plt.legend(ncol=1, prop=legend_font, loc='center left')
 plt.tight_layout()
 plt.savefig('plots/disulfide_distribution.pdf')
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
