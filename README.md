@@ -52,4 +52,4 @@ The strategies utilized in this work may be adapted to uncover sequence-function
 -----------------------
 If you find this work useful, please cite this paper:
 
-Gado, J.E., Harrison, B.E., Sandgren, M., Ståhlberg, J., Beckham, G.T., and Payne, C.M. **Machine learning reveals sequence-function relationships in family 7 glycoside hydrolases.** *J. Biol. Chem.* (2021).
+Gado JE, Harrison BE, Sandgren M, Ståhlberg J, Beckham GT, and Payne CM. **Machine learning reveals sequence-function relationships in family 7 glycoside hydrolases.** *J. Biol. Chem.* (2021).
